@@ -15,6 +15,14 @@
         <EntityTypeShape EntityType="GestionAdministrativaModel.Proyecto" Width="1.5" PointX="6.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="GestionAdministrativaModel.Tipo_Salario" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
         <EntityTypeShape EntityType="GestionAdministrativaModel.TipoCambio" Width="1.5" PointX="2.75" PointY="7.75" IsExpanded="true" />
+        <AssociationConnector Association="GestionAdministrativaModel.FK_Factura_Actividad" />
+        <AssociationConnector Association="GestionAdministrativaModel.FK_DetalleFactura_Factura" />
+        <AssociationConnector Association="GestionAdministrativaModel.FK_Empleado_Tipo_Salario" />
+        <AssociationConnector Association="GestionAdministrativaModel.FK_Historial_Salario_Empleado_Empleado" />
+        <AssociationConnector Association="GestionAdministrativaModel.FK_Factura_Proveedor" />
+        <AssociationConnector Association="GestionAdministrativaModel.FK_Factura_Proyecto" />
+        <AssociationConnector Association="GestionAdministrativaModel.FK_Factura_TipoCambio" />
+        <AssociationConnector Association="GestionAdministrativaModel.FK_Ingreso_TipoCambio" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="GestionAdministrativaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="GestionAdministrativaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Actividad">
           <Key>
             <PropertyRef Name="Id" />
@@ -114,6 +114,102 @@
           <Property Name="Fecha" Type="datetime" StoreGeneratedPattern="Computed" Nullable="false" />
           <Property Name="Activo" Type="bit" Nullable="false" />
         </EntityType>
+        <Association Name="FK_DetalleFactura_Factura">
+          <End Role="Factura" Type="Self.Factura" Multiplicity="1" />
+          <End Role="DetalleFactura" Type="Self.DetalleFactura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Factura">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DetalleFactura">
+              <PropertyRef Name="IdFactura" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Empleado_Tipo_Salario">
+          <End Role="Tipo_Salario" Type="Self.Tipo_Salario" Multiplicity="0..1" />
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tipo_Salario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Empleado">
+              <PropertyRef Name="Tipo_Salario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Factura_Actividad">
+          <End Role="Actividad" Type="Self.Actividad" Multiplicity="1" />
+          <End Role="Factura" Type="Self.Factura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Actividad">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Factura">
+              <PropertyRef Name="Actividad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Factura_Proveedor">
+          <End Role="Proveedor" Type="Self.Proveedor" Multiplicity="1" />
+          <End Role="Factura" Type="Self.Factura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proveedor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Factura">
+              <PropertyRef Name="Proveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Factura_Proyecto">
+          <End Role="Proyecto" Type="Self.Proyecto" Multiplicity="1" />
+          <End Role="Factura" Type="Self.Factura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proyecto">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Factura">
+              <PropertyRef Name="Proyecto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Factura_TipoCambio">
+          <End Role="TipoCambio" Type="Self.TipoCambio" Multiplicity="1" />
+          <End Role="Factura" Type="Self.Factura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoCambio">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Factura">
+              <PropertyRef Name="IdTipoCambio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Historial_Salario_Empleado_Empleado">
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="1" />
+          <End Role="Historial_Salario_Empleado" Type="Self.Historial_Salario_Empleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleado">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Historial_Salario_Empleado">
+              <PropertyRef Name="Id_Empleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ingreso_TipoCambio">
+          <End Role="TipoCambio" Type="Self.TipoCambio" Multiplicity="0..1" />
+          <End Role="Ingreso" Type="Self.Ingreso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoCambio">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Ingreso">
+              <PropertyRef Name="IdTipoCambio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="GestionAdministrativaModelStoreContainer">
           <EntitySet Name="Actividad" EntityType="Self.Actividad" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DetalleFactura" EntityType="Self.DetalleFactura" Schema="dbo" store:Type="Tables" />
@@ -125,9 +221,40 @@
           <EntitySet Name="Proyecto" EntityType="Self.Proyecto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tipo_Salario" EntityType="Self.Tipo_Salario" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TipoCambio" EntityType="Self.TipoCambio" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_DetalleFactura_Factura" Association="Self.FK_DetalleFactura_Factura">
+            <End Role="Factura" EntitySet="Factura" />
+            <End Role="DetalleFactura" EntitySet="DetalleFactura" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Empleado_Tipo_Salario" Association="Self.FK_Empleado_Tipo_Salario">
+            <End Role="Tipo_Salario" EntitySet="Tipo_Salario" />
+            <End Role="Empleado" EntitySet="Empleado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Factura_Actividad" Association="Self.FK_Factura_Actividad">
+            <End Role="Actividad" EntitySet="Actividad" />
+            <End Role="Factura" EntitySet="Factura" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Factura_Proveedor" Association="Self.FK_Factura_Proveedor">
+            <End Role="Proveedor" EntitySet="Proveedor" />
+            <End Role="Factura" EntitySet="Factura" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Factura_Proyecto" Association="Self.FK_Factura_Proyecto">
+            <End Role="Proyecto" EntitySet="Proyecto" />
+            <End Role="Factura" EntitySet="Factura" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Factura_TipoCambio" Association="Self.FK_Factura_TipoCambio">
+            <End Role="TipoCambio" EntitySet="TipoCambio" />
+            <End Role="Factura" EntitySet="Factura" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Historial_Salario_Empleado_Empleado" Association="Self.FK_Historial_Salario_Empleado_Empleado">
+            <End Role="Empleado" EntitySet="Empleado" />
+            <End Role="Historial_Salario_Empleado" EntitySet="Historial_Salario_Empleado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ingreso_TipoCambio" Association="Self.FK_Ingreso_TipoCambio">
+            <End Role="TipoCambio" EntitySet="TipoCambio" />
+            <End Role="Ingreso" EntitySet="Ingreso" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="GestionAdministrativaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -138,6 +265,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Facturas" Relationship="GestionAdministrativaModel.FK_Factura_Actividad" FromRole="Actividad" ToRole="Factura" />
         </EntityType>
         <EntityType Name="DetalleFactura">
           <Key>
@@ -148,6 +276,7 @@
           <Property Name="Producto" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Cantidad" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="PrecionUnidad" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <NavigationProperty Name="Factura" Relationship="GestionAdministrativaModel.FK_DetalleFactura_Factura" FromRole="DetalleFactura" ToRole="Factura" />
         </EntityType>
         <EntityType Name="Empleado">
           <Key>
@@ -163,6 +292,8 @@
           <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Salario" Type="Decimal" Precision="10" Scale="2" />
           <Property Name="Tipo_Salario" Type="Int32" />
+          <NavigationProperty Name="Tipo_Salario1" Relationship="GestionAdministrativaModel.FK_Empleado_Tipo_Salario" FromRole="Empleado" ToRole="Tipo_Salario" />
+          <NavigationProperty Name="Historial_Salario_Empleado" Relationship="GestionAdministrativaModel.FK_Historial_Salario_Empleado_Empleado" FromRole="Empleado" ToRole="Historial_Salario_Empleado" />
         </EntityType>
         <EntityType Name="Factura">
           <Key>
@@ -176,6 +307,11 @@
           <Property Name="IdTipoCambio" Type="Int32" Nullable="false" />
           <Property Name="MontoDolares" Type="Int32" />
           <Property Name="MontoColones" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Actividad1" Relationship="GestionAdministrativaModel.FK_Factura_Actividad" FromRole="Factura" ToRole="Actividad" />
+          <NavigationProperty Name="DetalleFacturas" Relationship="GestionAdministrativaModel.FK_DetalleFactura_Factura" FromRole="Factura" ToRole="DetalleFactura" />
+          <NavigationProperty Name="Proveedor1" Relationship="GestionAdministrativaModel.FK_Factura_Proveedor" FromRole="Factura" ToRole="Proveedor" />
+          <NavigationProperty Name="Proyecto1" Relationship="GestionAdministrativaModel.FK_Factura_Proyecto" FromRole="Factura" ToRole="Proyecto" />
+          <NavigationProperty Name="TipoCambio" Relationship="GestionAdministrativaModel.FK_Factura_TipoCambio" FromRole="Factura" ToRole="TipoCambio" />
         </EntityType>
         <EntityType Name="Historial_Salario_Empleado">
           <Key>
@@ -186,6 +322,7 @@
           <Property Name="Salario_Anterios" Type="Decimal" Precision="12" Scale="2" Nullable="false" />
           <Property Name="Salario_Nuevo" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="Fecha_Modificacion" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Empleado" Relationship="GestionAdministrativaModel.FK_Historial_Salario_Empleado_Empleado" FromRole="Historial_Salario_Empleado" ToRole="Empleado" />
         </EntityType>
         <EntityType Name="Ingreso">
           <Key>
@@ -199,6 +336,7 @@
           <Property Name="MontoDolares" Type="Decimal" Precision="10" Scale="2" />
           <Property Name="IdTipoCambio" Type="Int32" />
           <Property Name="IdProyecto" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TipoCambio" Relationship="GestionAdministrativaModel.FK_Ingreso_TipoCambio" FromRole="Ingreso" ToRole="TipoCambio" />
         </EntityType>
         <EntityType Name="Proveedor">
           <Key>
@@ -212,6 +350,7 @@
           <Property Name="Telefono2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Direccion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Facturas" Relationship="GestionAdministrativaModel.FK_Factura_Proveedor" FromRole="Proveedor" ToRole="Factura" />
         </EntityType>
         <EntityType Name="Proyecto">
           <Key>
@@ -223,6 +362,7 @@
           <Property Name="FechaInicio" Type="DateTime" Precision="3" />
           <Property Name="FechaFinal" Type="DateTime" Precision="3" />
           <Property Name="Estado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Facturas" Relationship="GestionAdministrativaModel.FK_Factura_Proyecto" FromRole="Proyecto" ToRole="Factura" />
         </EntityType>
         <EntityType Name="Tipo_Salario">
           <Key>
@@ -230,6 +370,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Tipo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Empleadoes" Relationship="GestionAdministrativaModel.FK_Empleado_Tipo_Salario" FromRole="Tipo_Salario" ToRole="Empleado" />
         </EntityType>
         <EntityType Name="TipoCambio">
           <Key>
@@ -239,6 +380,8 @@
           <Property Name="Valor" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
           <Property Name="Fecha" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Computed" Precision="3" />
           <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Facturas" Relationship="GestionAdministrativaModel.FK_Factura_TipoCambio" FromRole="TipoCambio" ToRole="Factura" />
+          <NavigationProperty Name="Ingresoes" Relationship="GestionAdministrativaModel.FK_Ingreso_TipoCambio" FromRole="TipoCambio" ToRole="Ingreso" />
         </EntityType>
         <EntityContainer Name="GestionAdministrativaEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Actividads" EntityType="Self.Actividad" />
@@ -251,7 +394,135 @@
           <EntitySet Name="Proyectoes" EntityType="Self.Proyecto" />
           <EntitySet Name="Tipo_Salario" EntityType="Self.Tipo_Salario" />
           <EntitySet Name="TipoCambios" EntityType="Self.TipoCambio" />
+          <AssociationSet Name="FK_Factura_Actividad" Association="GestionAdministrativaModel.FK_Factura_Actividad">
+            <End Role="Actividad" EntitySet="Actividads" />
+            <End Role="Factura" EntitySet="Facturas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DetalleFactura_Factura" Association="GestionAdministrativaModel.FK_DetalleFactura_Factura">
+            <End Role="Factura" EntitySet="Facturas" />
+            <End Role="DetalleFactura" EntitySet="DetalleFacturas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Empleado_Tipo_Salario" Association="GestionAdministrativaModel.FK_Empleado_Tipo_Salario">
+            <End Role="Tipo_Salario" EntitySet="Tipo_Salario" />
+            <End Role="Empleado" EntitySet="Empleadoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Historial_Salario_Empleado_Empleado" Association="GestionAdministrativaModel.FK_Historial_Salario_Empleado_Empleado">
+            <End Role="Empleado" EntitySet="Empleadoes" />
+            <End Role="Historial_Salario_Empleado" EntitySet="Historial_Salario_Empleado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Factura_Proveedor" Association="GestionAdministrativaModel.FK_Factura_Proveedor">
+            <End Role="Proveedor" EntitySet="Proveedors" />
+            <End Role="Factura" EntitySet="Facturas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Factura_Proyecto" Association="GestionAdministrativaModel.FK_Factura_Proyecto">
+            <End Role="Proyecto" EntitySet="Proyectoes" />
+            <End Role="Factura" EntitySet="Facturas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Factura_TipoCambio" Association="GestionAdministrativaModel.FK_Factura_TipoCambio">
+            <End Role="TipoCambio" EntitySet="TipoCambios" />
+            <End Role="Factura" EntitySet="Facturas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ingreso_TipoCambio" Association="GestionAdministrativaModel.FK_Ingreso_TipoCambio">
+            <End Role="TipoCambio" EntitySet="TipoCambios" />
+            <End Role="Ingreso" EntitySet="Ingresoes" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK_Factura_Actividad">
+          <End Type="GestionAdministrativaModel.Actividad" Role="Actividad" Multiplicity="1" />
+          <End Type="GestionAdministrativaModel.Factura" Role="Factura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Actividad">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Factura">
+              <PropertyRef Name="Actividad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DetalleFactura_Factura">
+          <End Type="GestionAdministrativaModel.Factura" Role="Factura" Multiplicity="1" />
+          <End Type="GestionAdministrativaModel.DetalleFactura" Role="DetalleFactura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Factura">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DetalleFactura">
+              <PropertyRef Name="IdFactura" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Empleado_Tipo_Salario">
+          <End Type="GestionAdministrativaModel.Tipo_Salario" Role="Tipo_Salario" Multiplicity="0..1" />
+          <End Type="GestionAdministrativaModel.Empleado" Role="Empleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tipo_Salario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Empleado">
+              <PropertyRef Name="Tipo_Salario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Historial_Salario_Empleado_Empleado">
+          <End Type="GestionAdministrativaModel.Empleado" Role="Empleado" Multiplicity="1" />
+          <End Type="GestionAdministrativaModel.Historial_Salario_Empleado" Role="Historial_Salario_Empleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleado">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Historial_Salario_Empleado">
+              <PropertyRef Name="Id_Empleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Factura_Proveedor">
+          <End Type="GestionAdministrativaModel.Proveedor" Role="Proveedor" Multiplicity="1" />
+          <End Type="GestionAdministrativaModel.Factura" Role="Factura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proveedor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Factura">
+              <PropertyRef Name="Proveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Factura_Proyecto">
+          <End Type="GestionAdministrativaModel.Proyecto" Role="Proyecto" Multiplicity="1" />
+          <End Type="GestionAdministrativaModel.Factura" Role="Factura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proyecto">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Factura">
+              <PropertyRef Name="Proyecto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Factura_TipoCambio">
+          <End Type="GestionAdministrativaModel.TipoCambio" Role="TipoCambio" Multiplicity="1" />
+          <End Type="GestionAdministrativaModel.Factura" Role="Factura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoCambio">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Factura">
+              <PropertyRef Name="IdTipoCambio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ingreso_TipoCambio">
+          <End Type="GestionAdministrativaModel.TipoCambio" Role="TipoCambio" Multiplicity="0..1" />
+          <End Type="GestionAdministrativaModel.Ingreso" Role="Ingreso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoCambio">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Ingreso">
+              <PropertyRef Name="IdTipoCambio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
