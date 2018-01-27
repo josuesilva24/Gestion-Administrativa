@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace GestionAdministrativa
 {
-    public partial class Form1 : Form
+    public partial class TiposDeCambiosForm : Form
     {
-        public Form1()
+        public TiposDeCambiosForm()
         {
             InitializeComponent();
-        }
-
-        private void tiposDeCambioToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            new TiposDeCambiosForm().Show();
         }
     }
 }
