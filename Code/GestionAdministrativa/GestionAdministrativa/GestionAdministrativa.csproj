@@ -88,6 +88,16 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EFF\EFF.csproj">
+      <Project>{a1468fe7-d174-403d-851d-f194d6843372}</Project>
+      <Name>EFF</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MappingClasses\MappingClasses.csproj">
+      <Project>{40533834-edc4-4201-8d96-f13eda85e53c}</Project>
+      <Name>MappingClasses</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
