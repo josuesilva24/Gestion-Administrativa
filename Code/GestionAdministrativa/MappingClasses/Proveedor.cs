@@ -1,14 +1,25 @@
-﻿namespace MappingClasses
+﻿using System.Collections.Generic;
+namespace MappingClasses
 {
-    public class Proveedor
+    public class Proveedor:BaseData
     {
-        public int Id { get; set; }
-        public string Nombre { get; set; }
-        public string TipoIdentificacion { get; set; }
-        public string Identificacion { get; set; }
-        public string Telefono { get; set; }
-        public string Telefono2 { get; set; }
-        public string Direccion { get; set; }
-        public string Notas { get; set; }
+
+        public List<Proveedor> GetAllProveedores()
+        {
+            return context.Proveedors.ToList();
+        }
+
+        public Proveedor GetProveedor(int IdEmpleado)
+        {
+            return context.Proveedors.Where(e => e.Id == IdEmpleado).firstOrDefault();
+        }
+
+
+        public void AddProveedor(Proveedor provedor)
+        {
+            context.Proveedors.add(provedor);
+            context.Proveedors.SaveChanges();
+
+        }
     }
 }
