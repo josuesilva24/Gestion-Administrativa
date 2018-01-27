@@ -6,11 +6,17 @@ using System.Threading.Tasks;
 
 namespace MappingClasses
 {
-    public class TipoCambio
+    public class TipoCambio:BaseData
     {
         public int Id { get; set; }
         public decimal Valor { get; set; }
         public System.DateTime Fecha { get; set; }
         public bool Activo { get; set; }
+
+
+        public void GetAllTiposCambios()
+        {
+            context.TipoCambios.ToList();
+        } 
     }
 }

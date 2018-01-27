@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Actividad.cs" />
+    <Compile Include="BaseData.cs" />
     <Compile Include="DetalleFactura.cs" />
     <Compile Include="Empleado.cs" />
     <Compile Include="Factura.cs" />
@@ -51,6 +52,12 @@
     <Compile Include="Proyecto.cs" />
     <Compile Include="TipoCambio.cs" />
     <Compile Include="TipoSalario.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EFF\EFF.csproj">
+      <Project>{A1468FE7-D174-403D-851D-F194D6843372}</Project>
+      <Name>EFF</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
