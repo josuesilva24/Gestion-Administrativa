@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Windows.Forms;
-using EFF;
+using MappingClasses;
+using System.Linq;
 
 namespace GestionAdministrativa
 {
     public partial class TiposDeCambiosForm : Form
     {
-        
+        TipoCambio TipoCambio = new TipoCambio();
         public TiposDeCambiosForm()
         {
             InitializeComponent();
@@ -14,7 +15,13 @@ namespace GestionAdministrativa
 
         private void TiposDeCambiosForm_Load(object sender, EventArgs e)
         {
-            dataGridView1.DataSource = context.TipoCambios.ToList();
+            dataGridView1.DataSource = TipoCambio.GetAllTiposCambios().
+                Select( x => new
+                {
+                    Fecha = x.Fecha,
+                    Valor = x.Valor
+                }).ToList();
+            
         }
     }
 }

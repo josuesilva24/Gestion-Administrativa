@@ -1,8 +1,6 @@
-﻿using System;
+﻿using System.Linq;
+using EFF;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MappingClasses
 {
@@ -14,9 +12,9 @@ namespace MappingClasses
         public bool Activo { get; set; }
 
 
-        public void GetAllTiposCambios()
+        public ICollection<EFF.TipoCambio> GetAllTiposCambios()
         {
-            context.TipoCambios.ToList();
+            return context.TipoCambios.ToList();
         } 
     }
 }
