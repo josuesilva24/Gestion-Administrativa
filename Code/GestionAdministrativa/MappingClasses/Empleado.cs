@@ -7,23 +7,23 @@ namespace MappingClasses
     {
  
 
-        public List<Empleado> GetAllEmpleados()
+        public List<EFF.Empleado> GetAllEmpleados()
         {
         
          return  context.Empleadoes.ToList();
 
         }
 
-        public Empleado GetEmpleado(int IdEmpleado)
+        public EFF.Empleado GetEmpleado(int IdEmpleado)
         {
-            return context.Empleadoes.Where(e => e.Id == IdEmpleado).firstOrDefault();
+            return context.Empleadoes.Where(e => e.Id == IdEmpleado).FirstOrDefault();
         }
 
 
-        public void AddEmpleado(Empleado empleado)
+        public void AddEmpleado(EFF.Empleado empleado)
         {
-             context.Empleadoes.add(empleado);
-             context.Empleadoes.SaveChanges();
+             context.Empleadoes.Add(empleado);
+             context.SaveChanges();
 
         }
 

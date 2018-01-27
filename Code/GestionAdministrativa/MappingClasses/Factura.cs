@@ -1,24 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace MappingClasses
 {
     public class Factura:BaseData
     {
-        public List<Factura> GetAllFacturas()
+        public List<EFF.Factura> GetAllFacturas()
         {
             return context.Facturas.ToList();
         }
 
-        public Factura GetProveedor(int IdFactura)
+        public EFF.Factura GetProveedor(int IdFactura)
         {
-            return context.Facturas.Where(e => e.Id == IdFactura).firstOrDefault();
+            return context.Facturas.Where(e => e.Id == IdFactura).FirstOrDefault();
         }
 
 
-        public void AddProveedor(Factura factura)
+        public void AddProveedor(EFF.Factura factura)
         {
-            context.Facturas.add(factura);
+            context.Facturas.Add(factura);
         }
 
     }
