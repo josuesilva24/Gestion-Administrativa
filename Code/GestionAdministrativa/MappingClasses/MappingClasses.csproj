@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MappingClasses</RootNamespace>
     <AssemblyName>MappingClasses</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -51,7 +52,7 @@
   <ItemGroup>
     <Compile Include="Actividad.cs" />
     <Compile Include="BaseData.cs" />
-    <Compile Include="DetalleFactura.cs" />
+    <Compile Include="Detalle_Factura.cs" />
     <Compile Include="Empleado.cs" />
     <Compile Include="Factura.cs" />
     <Compile Include="Historial_Salario_Empleado.cs" />
