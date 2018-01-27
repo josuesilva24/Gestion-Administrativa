@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace MappingClasses
 {
-    public class Empleado
+    public class Empleado:BaseData
     {
         public int Id { get; set; }
         public string Nombre { get; set; }
@@ -16,6 +17,26 @@ namespace MappingClasses
         public string Tipo_Salario { get; set; }
 
         public ICollection<Historial_Salario_Empleado> Historial_Salario_Empleado { get; set; }
+
+
+
+        public List<Empleado> GetAllEmpleados()
+        {
+        
+         return  context.Empleadoes.ToList();
+
+        }
+
+        public Empleado GetAEmpleado(int IdEmpleado)
+        {
+            return context.Empleadoes.Where(e => e.Id == IdEmpleado).firstOrDefault();
+        }
+
+
+        public void AddEmpleado(Empleado empleado)
+        {
+             context.Empleadoes.add(empleado);
+        }
 
     }
 }
