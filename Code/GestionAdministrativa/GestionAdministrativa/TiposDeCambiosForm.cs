@@ -19,7 +19,8 @@ namespace GestionAdministrativa
                 Select( x => new
                 {
                     Fecha = x.Fecha,
-                    Valor = x.Valor
+                    Valor =  x.Valor,
+                    Activo = (x.Activo)?"Si":"No"
                 }).ToList();
             
         }
