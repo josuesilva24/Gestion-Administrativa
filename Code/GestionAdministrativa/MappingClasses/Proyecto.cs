@@ -1,14 +1,29 @@
 ﻿using System;
-
+using System.Collections.Generic;
+using System.Linq;
 namespace MappingClasses
 {
-    public class Proyecto
+    public class Proyecto:BaseData
     {
-        public int Id { get; set; }
-        public string Nombre { get; set; }
-        public string Descripcion { get; set; }
-        public DateTime? FechaInicio { get; set; }
-        public DateTime? FechaFinal { get; set; }
-        public string Estado { get; set; }
+
+        public List<EFF.Proyecto> GetAllProyectos()
+        {
+
+            return context.Proyectoes.ToList();
+
+        }
+
+        public EFF.Proyecto GetProyecto(int IdProyecto)
+        {
+            return context.Proyectoes.Where(e => e.Id == IdProyecto).FirstOrDefault();
+        }
+
+
+        public void AddProyecto(EFF.Proyecto proyecto)
+        {
+            context.Proyectoes.Add(proyecto);
+            context.SaveChanges();
+
+        }
     }
 }

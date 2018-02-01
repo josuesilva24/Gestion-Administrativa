@@ -1,18 +1,28 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace MappingClasses
 {
-    public class Ingreso
+    public class Ingreso:BaseData
     {
-        public int Id { get; set; }
-        public string Nombre { get; set; }
-        public string Descripcion { get; set; }
-        public DateTime Fecha { get; set; }
-        public decimal MontoColones { get; set; }
-        public decimal? MontoDolares { get; set; }
-        public int? IdTipoCambio { get; set; }
-        public Proyecto Proyecto { get; set; }
 
-        public  TipoCambio TipoCambio { get; set; }
+        public ICollection<EFF.Ingreso> GetAllIngresos()
+        {
+            return context.Ingresoes.ToList();
+        }
+
+        public EFF.Ingreso GetIngreso(int idIngreso)
+        {
+            return context.Ingresoes.Where(e => e.Id == idIngreso).FirstOrDefault();
+        }
+
+
+        public void AddIngreso(EFF.Ingreso Ingreso)
+        {
+            context.Ingresoes.Add(Ingreso);
+            context.SaveChanges();
+
+        }
+
     }
 }
