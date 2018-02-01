@@ -21,5 +21,10 @@ namespace GestionAdministrativa
         {
             new TiposDeCambiosForm().Show();
         }
+
+        private void proveedorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new ProveedorForm().Show();
+        }
     }
 }
