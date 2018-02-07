@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace GestionAdministrativa
@@ -25,6 +18,26 @@ namespace GestionAdministrativa
         private void proveedorToolStripMenuItem_Click(object sender, EventArgs e)
         {
             new ProveedorForm().Show();
+        }
+
+        private void actividadToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new ActividadForm().Show();
+        }
+
+        private void empleadosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new EmpleadoForm().Show();
+        }
+
+        private void tipoDeSalarioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new TipoSalarioForm().Show();
+        }
+
+        private void facturasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new FacturaForm().Show();
         }
     }
 }

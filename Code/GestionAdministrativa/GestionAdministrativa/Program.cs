@@ -14,9 +14,11 @@ namespace GestionAdministrativa
         [STAThread]
         static void Main()
         {
+            new MappingClasses.BaseData();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
+
         }
     }
 }

@@ -22,7 +22,16 @@ namespace GestionAdministrativa
                     Valor =  x.Valor,
                     Activo = (x.Activo)?"Si":"No"
                 }).ToList();
-            
+
+            dataGridView1.Columns.Add(new DataGridViewButtonColumn {
+                Text = "Editar",
+                UseColumnTextForButtonValue = true
+            });
+            dataGridView1.Columns.Add(new DataGridViewButtonColumn
+            {
+                Text = "Eliminar",
+                UseColumnTextForButtonValue = true
+            });
         }
     }
 }
