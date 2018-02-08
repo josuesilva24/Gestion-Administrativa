@@ -21,8 +21,8 @@ namespace GestionAdministrativa
                     x.Id,
                     x.Actividad1.Descripcion,
                     x.Fecha,
-                    x.MontoColones,
-                    x.MontoDolares,//aca hacer la conversion por el tipo de cambio
+                    MontoColones = (x.MontoDolares!= null)?(x.MontoDolares*x.TipoCambio.Valor): 0,
+                    MontoDolares = (x.MontoDolares != null) ? x.MontoDolares: null,
                     Proveedor = x.Proveedor1.Nombre,
                     Poroyecto = x.Proyecto1.Nombre
                 }).ToList();
@@ -40,8 +40,18 @@ namespace GestionAdministrativa
             dataGridView1.Columns.Add(new DataGridViewButtonColumn
             {
                 Text = "Ver Detalle",
-                UseColumnTextForButtonValue = true
+                UseColumnTextForButtonValue = true,
+                Name = "VerDetalleFactura",
             });
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == dataGridView1.Columns["VerDetalleFactura"].Index && e.RowIndex >= 0)
+            {
+                var facturaId = int.Parse(dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString());
+                new DetalleFacturaForm(facturaId).Show();
+            }
         }
     }
 }

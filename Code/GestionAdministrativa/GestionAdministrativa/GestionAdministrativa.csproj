@@ -55,6 +55,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DetalleFacturaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DetalleFacturaForm.Designer.cs">
+      <DependentUpon>DetalleFacturaForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="FacturaForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -99,6 +105,9 @@
     <Compile Include="TiposDeCambiosForm.Designer.cs">
       <DependentUpon>TiposDeCambiosForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="DetalleFacturaForm.resx">
+      <DependentUpon>DetalleFacturaForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FacturaForm.resx">
       <DependentUpon>FacturaForm.cs</DependentUpon>
     </EmbeddedResource>

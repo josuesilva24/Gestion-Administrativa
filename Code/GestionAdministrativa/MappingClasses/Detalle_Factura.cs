@@ -15,6 +15,10 @@ namespace MappingClasses
         {
             return context.DetalleFacturas.Where(e => e.Id == IdDetFactura).FirstOrDefault();
         }
+        public List<DetalleFactura> GetDetFacturasPorFactura(int IdFactura)
+        {
+            return context.DetalleFacturas.Where(e => e.IdFactura == IdFactura).ToList();
+        }
 
 
         public void AddProveedor(DetalleFactura detfactura)
