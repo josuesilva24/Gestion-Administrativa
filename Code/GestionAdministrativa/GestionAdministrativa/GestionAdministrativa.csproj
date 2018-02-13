@@ -67,6 +67,18 @@
     <Compile Include="FacturaForm.Designer.cs">
       <DependentUpon>FacturaForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="IngresosForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="IngresosForm.Designer.cs">
+      <DependentUpon>IngresosForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SalariosForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SalariosForm.Designer.cs">
+      <DependentUpon>SalariosForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="TipoSalarioForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -110,6 +122,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FacturaForm.resx">
       <DependentUpon>FacturaForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IngresosForm.resx">
+      <DependentUpon>IngresosForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SalariosForm.resx">
+      <DependentUpon>SalariosForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TipoSalarioForm.resx">
       <DependentUpon>TipoSalarioForm.cs</DependentUpon>
