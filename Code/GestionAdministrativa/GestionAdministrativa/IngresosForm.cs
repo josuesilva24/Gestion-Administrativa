@@ -26,6 +26,46 @@ namespace GestionAdministrativa
 
         private void IngresosForm_Load(object sender, EventArgs e)
         {
+            CargarProyectosCombo();
+            CargarTipoCambioCombo();
+            cargarGridIngreso();
+
+            dataGridViewIngreso.Columns.Add(new DataGridViewButtonColumn
+            {
+                Text = "Editar",
+                UseColumnTextForButtonValue = true
+            });
+            dataGridViewIngreso.Columns.Add(new DataGridViewButtonColumn
+            {
+                Text = "Eliminar",
+                UseColumnTextForButtonValue = true
+            });
+
+          
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            
+            EFF.Ingreso ingr = new EFF.Ingreso();
+            ingr.Nombre = textBoxNombre.Text;
+            ingr.Descripcion = textBoxDescripcion.Text;
+            ingr.Fecha = DateTime.Now;
+            ingr.MontoColones = decimal.Parse(textBoxMontoColones.Text);
+            ingr.MontoDolares = decimal.Parse(textBoxMontoDolares.Text);
+            ingr.IdProyecto = int.Parse(comboBoxProyecto.SelectedValue.ToString());
+            ingr.IdTipoCambio = int.Parse(comboBoxTipocambio.SelectedValue.ToString());
+            if (textBoxId.Text == string.Empty)
+                ingre.AddIngreso(ingr);
+            else
+                ingr.Id = int.Parse(textBoxId.Text);
+                ingre.UpdateIngreso(ingr);
+            cargarGridIngreso();
+            limpiarCampos();
+        }
+
+        private void cargarGridIngreso()
+        {
             dataGridViewIngreso.DataSource = ingre.GetAllIngresos().
               Select(x => new
               {
@@ -37,6 +77,54 @@ namespace GestionAdministrativa
                   x.TipoCambio,
                   x.IdProyecto,
               }).ToList();
+
         }
+
+        private void CargarProyectosCombo() {
+
+            comboBoxProyecto.DataSource = new Proyecto().GetAllProyectos();
+            comboBoxProyecto.DisplayMember = "Nombre";
+            comboBoxProyecto.ValueMember = "Id";
+        }
+        private void CargarTipoCambioCombo()
+        {
+
+            comboBoxTipocambio.DataSource = new TipoCambio().GetAllTiposCambios();
+            comboBoxTipocambio.DisplayMember = "Valor";
+            comboBoxTipocambio.ValueMember = "Id";
+        }
+
+        private void limpiarCampos() {
+             textBoxNombre.Text = string.Empty;
+            textBoxDescripcion.Text = string.Empty;
+            textBoxMontoColones.Text = string.Empty;
+           textBoxMontoDolares.Text = string.Empty;
+        }
+
+        private void dataGridViewIngreso_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if ( e.ColumnIndex == 7)
+            {
+                var ingresoID = int.Parse(dataGridViewIngreso.Rows[e.RowIndex].Cells[0].Value.ToString());
+
+                EFF.Ingreso pr =  new Ingreso().GetIngreso(ingresoID);
+
+                textBoxNombre.Text = pr.Nombre;
+                textBoxDescripcion.Text = pr.Descripcion;
+                textBoxMontoColones.Text = pr.MontoColones.ToString();
+                textBoxMontoDolares.Text = pr.MontoDolares.ToString();
+                comboBoxTipocambio.SelectedItem = pr.TipoCambio;
+                comboBoxProyecto.SelectedItem = pr.IdProyecto;
+                textBoxId.Text = pr.Id.ToString();
+            }
+
+            if (e.ColumnIndex == 8)
+            {
+                var ingresoID = int.Parse(dataGridViewIngreso.Rows[e.RowIndex].Cells[0].Value.ToString());
+                 new Ingreso().deleteIngreso(ingresoID);
+                cargarGridIngreso();
+            }
+        }
+
     }
 }

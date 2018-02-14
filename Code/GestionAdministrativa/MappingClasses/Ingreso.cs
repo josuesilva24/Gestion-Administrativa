@@ -35,5 +35,24 @@ namespace MappingClasses
 
         }
 
+        public void UpdateIngreso(EFF.Ingreso Ingreso)
+        {
+            EFF.Ingreso ingresoBD= context.Ingresoes.Where(e => e.Id == Ingreso.Id).FirstOrDefault();
+            ingresoBD.Nombre = Ingreso.Nombre;
+            ingresoBD.Descripcion = Ingreso.Descripcion;
+            ingresoBD.TipoCambio = Ingreso.TipoCambio;
+            ingresoBD.MontoColones = Ingreso.MontoColones;
+            ingresoBD.MontoDolares = Ingreso.MontoDolares;
+            ingresoBD.IdProyecto= Ingreso.IdProyecto;
+            context.SaveChanges();
+
+        }
+        public void deleteIngreso(int idIngreso) {
+
+            EFF.Ingreso ingresoBD = context.Ingresoes.Where(e => e.Id == idIngreso).FirstOrDefault();
+
+            context.Ingresoes.Remove(ingresoBD);
+            context.SaveChanges();
+        }
     }
 }
