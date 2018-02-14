@@ -25,4 +25,18 @@ namespace EFF
     
         public virtual TipoCambio TipoCambio { get; set; }
     }
+
+    public partial class IngresoModel
+    {
+        public int Id { get; set; }
+        public string Nombre { get; set; }
+        public string Descripcion { get; set; }
+        public System.DateTime Fecha { get; set; }
+        public decimal MontoColones { get; set; }
+        public Nullable<decimal> MontoDolares { get; set; }
+        public Nullable<int> IdTipoCambio { get; set; }
+        public string IdProyecto { get; set; }
+
+        public decimal TipoCambio  { get; set; }
+    }
 }

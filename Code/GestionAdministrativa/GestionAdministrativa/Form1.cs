@@ -39,5 +39,10 @@ namespace GestionAdministrativa
         {
             new FacturaForm().Show();
         }
+
+        private void ingresosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new IngresosForm().Show();
+        }
     }
 }
