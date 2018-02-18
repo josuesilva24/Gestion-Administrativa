@@ -62,6 +62,9 @@ namespace GestionAdministrativa
                 ingre.UpdateIngreso(ingr);
             cargarGridIngreso();
             limpiarCampos();
+
+            dataGridViewIngreso.Refresh();
+
         }
 
         private void cargarGridIngreso()
@@ -75,7 +78,7 @@ namespace GestionAdministrativa
                   x.MontoColones,
                   x.MontoDolares,
                   x.TipoCambio,
-                  x.IdProyecto,
+                 Proyecto = x.IdProyecto,
               }).ToList();
 
         }
@@ -95,10 +98,7 @@ namespace GestionAdministrativa
         }
 
         private void limpiarCampos() {
-             textBoxNombre.Text = string.Empty;
-            textBoxDescripcion.Text = string.Empty;
-            textBoxMontoColones.Text = string.Empty;
-           textBoxMontoDolares.Text = string.Empty;
+             textBoxNombre.Text = textBoxDescripcion.Text =  textBoxMontoColones.Text =  textBoxMontoDolares.Text = string.Empty;
         }
 
         private void dataGridViewIngreso_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -116,13 +116,24 @@ namespace GestionAdministrativa
                 comboBoxTipocambio.SelectedItem = pr.TipoCambio;
                 comboBoxProyecto.SelectedItem = pr.IdProyecto;
                 textBoxId.Text = pr.Id.ToString();
+          
             }
 
             if (e.ColumnIndex == 8)
             {
-                var ingresoID = int.Parse(dataGridViewIngreso.Rows[e.RowIndex].Cells[0].Value.ToString());
-                 new Ingreso().deleteIngreso(ingresoID);
-                cargarGridIngreso();
+                var confirmResult = MessageBox.Show("Está seguro de eliminar el registro?",
+                                     "Confirm Delete!!",
+                                     MessageBoxButtons.YesNo);
+                if (confirmResult == DialogResult.Yes)
+                {
+                    var ingresoID = int.Parse(dataGridViewIngreso.Rows[e.RowIndex].Cells[0].Value.ToString());
+                    new Ingreso().deleteIngreso(ingresoID);
+                    cargarGridIngreso();// If 'Yes', do something here.
+                    dataGridViewIngreso.Refresh();
+                }
+               
+             
+                
             }
         }
 

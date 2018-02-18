@@ -23,5 +23,19 @@ namespace MappingClasses
             context.SaveChanges();
 
         }
+
+        public void UpdateProveedpr(EFF.Proveedor provedor)
+        {
+            EFF.Proveedor prove= GetProveedor(provedor.Id);
+
+            prove.Nombre = provedor.Nombre;
+            prove.TipoIdentificacion = provedor.TipoIdentificacion;
+            prove.Identificacion = provedor.Identificacion;
+            prove.Telefono = provedor.Telefono;
+            prove.Telefono2 = provedor.Telefono2;
+            prove.Direccion = provedor.Direccion;
+            prove.Notas = provedor.Notas;
+            context.SaveChanges();
+        }
     }
 }
