@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MappingClasses;
+using System;
 using System.Windows.Forms;
 
 namespace GestionAdministrativa
@@ -43,6 +44,11 @@ namespace GestionAdministrativa
         private void ingresosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             new IngresosForm().Show();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            LoggerService.WriteEntryInformation("La Aplicacion inicio correctamente");
         }
     }
 }
