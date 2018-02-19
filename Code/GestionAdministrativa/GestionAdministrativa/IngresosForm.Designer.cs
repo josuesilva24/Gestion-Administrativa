@@ -51,7 +51,7 @@
             this.dataGridViewIngreso.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewIngreso.Location = new System.Drawing.Point(12, 150);
             this.dataGridViewIngreso.Name = "dataGridViewIngreso";
-            this.dataGridViewIngreso.Size = new System.Drawing.Size(846, 150);
+            this.dataGridViewIngreso.Size = new System.Drawing.Size(893, 150);
             this.dataGridViewIngreso.TabIndex = 0;
             this.dataGridViewIngreso.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewIngreso_CellClick);
             // 
@@ -72,6 +72,7 @@
             this.textBoxMontoDolares.Size = new System.Drawing.Size(124, 20);
             this.textBoxMontoDolares.TabIndex = 15;
             this.textBoxMontoDolares.Text = "0";
+            this.textBoxMontoDolares.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxMontoDolares_KeyPress);
             // 
             // label3
             // 
@@ -105,6 +106,7 @@
             this.textBoxMontoColones.Size = new System.Drawing.Size(128, 20);
             this.textBoxMontoColones.TabIndex = 11;
             this.textBoxMontoColones.Text = "0";
+            this.textBoxMontoColones.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxMontoColones_KeyPress);
             // 
             // textBoxId
             // 
@@ -177,7 +179,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(897, 378);
+            this.ClientSize = new System.Drawing.Size(949, 378);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.comboBoxTipocambio);
             this.Controls.Add(this.label6);

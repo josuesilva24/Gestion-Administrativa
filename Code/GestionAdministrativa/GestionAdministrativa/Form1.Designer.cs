@@ -49,8 +49,8 @@
             this.gestionToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1137, 28);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(853, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -63,13 +63,13 @@
             this.empleadosToolStripMenuItem,
             this.tipoDeSalarioToolStripMenuItem});
             this.configuracionToolStripMenuItem.Name = "configuracionToolStripMenuItem";
-            this.configuracionToolStripMenuItem.Size = new System.Drawing.Size(114, 24);
+            this.configuracionToolStripMenuItem.Size = new System.Drawing.Size(95, 20);
             this.configuracionToolStripMenuItem.Text = "Configuracion";
             // 
             // tiposDeCambioToolStripMenuItem
             // 
             this.tiposDeCambioToolStripMenuItem.Name = "tiposDeCambioToolStripMenuItem";
-            this.tiposDeCambioToolStripMenuItem.Size = new System.Drawing.Size(199, 26);
+            this.tiposDeCambioToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
             this.tiposDeCambioToolStripMenuItem.Text = "Tipos De Cambio";
             this.tiposDeCambioToolStripMenuItem.Click += new System.EventHandler(this.tiposDeCambioToolStripMenuItem_Click);
             // 

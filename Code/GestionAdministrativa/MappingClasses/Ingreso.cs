@@ -10,7 +10,7 @@ namespace MappingClasses
         {
           return (from ingres in context.Ingresoes
                    join Proyect in context.Proyectoes on ingres.IdProyecto equals Proyect.Id
-                   join tipoC in context.TipoCambios on ingres.IdTipoCambio equals tipoC.Id
+                   join tipoC in context.TipoCambios on ingres.IdTipoCambio equals tipoC.Id orderby ingres.Fecha descending
                    select new EFF.IngresoModel {
                        Id= ingres.Id,
                       Nombre= ingres.Nombre,
