@@ -68,9 +68,9 @@ namespace GestionAdministrativa
         {
             if (WithErrors())
             {
-                MessageBox.Show("Existen campos en blanco que se deben rellenar!",
+                MessageBox.Show("Existen campos en blanco que se deben rellenar, verificar campos vacíos!",
                                      "Campos vacíos!!",
-                                     MessageBoxButtons.YesNo);
+                                     MessageBoxButtons.OK);
 
             }
             else

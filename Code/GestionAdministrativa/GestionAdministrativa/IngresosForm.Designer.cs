@@ -196,7 +196,7 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.dataGridViewIngreso);
             this.Name = "IngresosForm";
-            this.Text = "IngresosForm";
+            this.Text = "Ingresos";
             this.Load += new System.EventHandler(this.IngresosForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewIngreso)).EndInit();
             this.ResumeLayout(false);
